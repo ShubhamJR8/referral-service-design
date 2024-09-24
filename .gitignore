@@ -1,0 +1,17 @@
+# Node modules
+node_modules/
+
+# Environment files
+.env
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# Other optional ignores
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
