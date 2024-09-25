@@ -13,7 +13,7 @@ const ReferralSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['active', 'inactive'], // Can extend as needed
+    enum: ['active', 'inactive', 'redeemed'], // Can extend as needed
     default: 'active',
   },
   createdAt: {
@@ -24,6 +24,10 @@ const ReferralSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  expiresAt: {
+    type: Date,
+    default: () => Date.now() + 7 * 24 * 60 * 60 * 1000 // Expires in 7 days
+  }
 });
 
 // Optional: Middleware to update `updatedAt` on save

@@ -20,6 +20,10 @@ const UserSchema = new mongoose.Schema({
     enum: ['admin', 'viewer', 'editor'],
     default: 'viewer',
   },
+  referralCodeUsed: { // New field to store the referral code used by the user
+    type: String,
+    default: null, // It will be null if no referral code was used
+  },
 });
 
 // Pre-save middleware for password hashing

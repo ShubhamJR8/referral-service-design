@@ -35,6 +35,33 @@ const createReferral = async (req, res) => {
   }
 };
 
+// Update Referral Status
+const updateReferralStatus = async (req, res) => {
+  const referralId = req.params.id;
+  const { status } = req.body;
+
+  if (!['active', 'inactive'].includes(status)) {
+    return res.status(400).json({ error: "Invalid status" });
+  }
+
+  try {
+    const referral = await Referral.findByIdAndUpdate(
+      referralId,
+      { status },
+      { new: true }
+    );
+
+    if (!referral) {
+      return res.status(404).json({ error: "Referral not found" });
+    }
+
+    res.status(200).json(referral);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update referral status" });
+  }
+};
+
 module.exports = {
   createReferral,
+  updateReferralStatus,
 };
